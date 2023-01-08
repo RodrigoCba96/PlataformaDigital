@@ -1,0 +1,87 @@
+ 
+.btn-primary {
+    position: absolute;
+     }
+.btn-danger{
+
+margin-left: 5%;
+ 
+
+}
+.conteiner {
+    
+    background-color: rgb(198, 188, 221);
+    border: 1rem solid rgb(72, 35, 238);
+    display:inline-table;
+    margin: 1rem;
+    margin-left: 10%;
+    margin-top: 4%;
+    position: absolute;
+     padding: 1rem;
+    color: rgb(220, 20, 60);
+    font-family: 'Prosto One', "cursive";
+    }
+
+.title{
+     background-color: rgb(177, 20, 20);
+     text-align: center;
+     font-family: 'Prosto One', "cursive";
+      }
+.title2{
+    background-color: rgb(198, 188, 221);
+    font-family: 'Prosto One', "cursive";
+    margin-top: 1% ;
+    padding: 2%;
+      } 
+
+.title3{
+    font-family: 'Prosto One', "cursive";
+    background-color: rgb(177, 20, 20);
+
+      }
+      
+.title4 {
+
+    font-family: 'Prosto One', "cursive";
+    color: aliceblue
+
+      }
+
+.boton{
+    font-family: 'Prosto One', "cursive";
+}
+
+.boton:hover{
+    background-color: rgb(198, 188, 221);
+
+}
+
+.boton2{
+    font-family: 'Prosto One', "cursive";
+    color: rgb(220, 20, 60);
+
+}
+
+.boton2:hover {
+    background-color: blue;
+}
+
+.boton3 {
+    font-family: 'Prosto One', "cursive";
+    color: rgb(220, 20, 60);
+
+
+}
+
+.boton3:hover {
+    background-color: blue;
+}
+
+
+.imgjuegos {
+
+    width: 400px;
+    height: 300px;
+    object-fit: contain;
+    margin: 1rem;
+}
