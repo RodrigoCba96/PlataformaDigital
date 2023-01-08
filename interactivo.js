@@ -104,7 +104,7 @@ const mostrarChanguito = () => {
     <h1>${Producto.nombre}</h1>
     <h4>Precio: ${Producto.precio}$</h4>
     <p>${Producto.cantidad}</p>
-    <button class = "boton" id ="Ver${Producto.id}">Ver Producto</button>
+    <button class = "boton2" id ="Ver${Producto.id}">Ver Producto</button>
     </div>
     </div>`
 
