@@ -24,11 +24,6 @@ const productos = [Spiderman, Batman, Kratos, Wz, Forhonor, Dbz];
 
 console.log(productos);
 
-//ARRAY DE CARRITO
-
-let carrito = []
-
-
 // uso de DOM
 
 const contenedorProductos = document.getElementById("contenedorProductos");
@@ -68,13 +63,12 @@ const agregarAlcarrito = (id) => {
   }
   else {
     const producto = productos.find(Producto => Producto.id === id);
-    carrito.push(producto);
+    productos.push(producto);
    }
-  
+  console.log(productos)
 } 
 
-console.log(carrito)
-
+ 
 
 mostrarProductos(productos);
 
@@ -92,9 +86,9 @@ verChanguito.addEventListener("click", () => {
 
 const mostrarChanguito = () => {
 
-//changuito.innerHTML = "",
+changuito.innerHTML = "";
 
-  carrito.forEach(Producto => {
+  productos.forEach(Producto => {
     const card = document.createElement("div")
     card.classList.add("col-x1-3", "col-md-6", "col-xs-12");
     card.innerHTML = `
@@ -103,8 +97,8 @@ const mostrarChanguito = () => {
     <div class= "conteiner">
     <h1>${Producto.nombre}</h1>
     <h4>Precio: ${Producto.precio}$</h4>
-    <p>${Producto.cantidad}</p>
-    <button class = "boton2" id ="Ver${Producto.id}">Ver Producto</button>
+    <p>Cantidad: ${Producto.cantidad}</p>
+    <button class = "boton" id ="Sacar${Producto.id}">Eliminar producto</button>
     </div>
     </div>`
 
