@@ -98,16 +98,34 @@ changuito.innerHTML = "";
     <h1>${Producto.nombre}</h1>
     <h4>Precio: ${Producto.precio}$</h4>
     <p>Cantidad: ${Producto.cantidad}</p>
-    <button class = "boton" id ="Sacar${Producto.id}">Eliminar producto</button>
+    <button class = "boton2" id ="Sacar${Producto.id}">Eliminar producto</button>
     </div>
     </div>`
 
   changuito.appendChild(card);
- 
+  
+
+  //ELIMINAR PRODUCTOS
+
+  const boton2 = document.getElementById(`Sacar${Producto.id}`);
+  boton2.addEventListener("click", () =>{
+    eliminarDelChanguito(Producto.id)
+  })
 
   })
 
 }
+
+//FUNCTION PARA ELIMINAR PRODUCTO
+const eliminarDelChanguito = (id) => {
+  const productos = productos.find(Producto => Producto.id === id);
+  const indice= changuito.indexOf(productos) 
+  productos.splice(indice, 1)
+
+  mostrarChanguito();
+}
+
+
 
 
 // EVENTO * - *BUTTON* 

@@ -85,3 +85,7 @@ margin-left: 5%;
     object-fit: contain;
     margin: 1rem;
 }
+
+.card {
+    background-color: rgb(198, 188, 221);
+}
