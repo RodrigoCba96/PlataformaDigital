@@ -21,8 +21,11 @@ const Dbz = new Producto(6, "Dragon Ball Z Kakarot", 1000, "img/dbz.jpg");
 //ARRAY DE PRODUCTOS
                                            
 const productos = [Spiderman, Batman, Kratos, Wz, Forhonor, Dbz];
-
 console.log(productos);
+
+let carrito = [];
+
+ 
 
 // uso de DOM
 
@@ -68,8 +71,6 @@ const agregarAlcarrito = (id) => {
   console.log(productos)
 } 
 
- 
-
 mostrarProductos(productos);
 
 //MOSTRAR CARRO DE COMPRAS
@@ -88,7 +89,7 @@ const mostrarChanguito = () => {
 
 changuito.innerHTML = "";
 
-  productos.forEach(Producto => {
+    productos.forEach(Producto => {
     const card = document.createElement("div")
     card.classList.add("col-x1-3", "col-md-6", "col-xs-12");
     card.innerHTML = `
@@ -98,7 +99,7 @@ changuito.innerHTML = "";
     <h1>${Producto.nombre}</h1>
     <h4>Precio: ${Producto.precio}$</h4>
     <p>Cantidad: ${Producto.cantidad}</p>
-    <button class = "boton2" id ="Sacar${Producto.id}">Eliminar producto</button>
+    <button class = "boton" id = "Sacar${Producto.id}">Eliminar producto</button>
     </div>
     </div>`
 
@@ -107,8 +108,8 @@ changuito.innerHTML = "";
 
   //ELIMINAR PRODUCTOS
 
-  const boton2 = document.getElementById(`Sacar${Producto.id}`);
-  boton2.addEventListener("click", () =>{
+    const boton = document.getElementById(`Sacar${Producto.id}`);
+    boton.addEventListener("click", () =>{
     eliminarDelChanguito(Producto.id)
   })
 
@@ -116,25 +117,20 @@ changuito.innerHTML = "";
 
 }
 
-//FUNCTION PARA ELIMINAR PRODUCTO
-const eliminarDelChanguito = (id) => {
-  const productos = productos.find(Producto => Producto.id === id);
-  const indice= changuito.indexOf(productos) 
-  productos.splice(indice, 1)
+  //FUNCTION PARA ELIMINAR PRODUCTO
+    const eliminarDelChanguito = (id) => {
+    const productos = carrito.find(Producto => Producto.id === id);
+    const indice= carrito.indexOf(productos) 
+    carrito.splice(indice, 1);
 
-  mostrarChanguito();
-}
+     mostrarChanguito();
+ }
 
-
-
-
-// EVENTO * - *BUTTON* 
-
+  // EVENTO * - *BUTTON* 
 const btn= document.getElementById("contenedorProductos");
-
-
 btn.addEventListener("click", () => {
 console.log("Agregado al carrito")
+
 //alert("Agregado al carrito")
   })
  
