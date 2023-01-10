@@ -6,7 +6,7 @@ class Producto {
     this.nombre = nombre;
     this.precio = precio;
     this.img = img;
-    this.cantidad= 1; 
+    this.cantidad= 0; 
   }
 }
 
@@ -23,7 +23,7 @@ const Dbz = new Producto(6, "Dragon Ball Z Kakarot", 1000, "img/dbz.jpg");
 const productos = [Spiderman, Batman, Kratos, Wz, Forhonor, Dbz];
 console.log(productos);
 
-let carrito = [];
+let carrito = [Spiderman, Batman, Kratos, Wz, Forhonor, Dbz];
 
  
 
@@ -32,7 +32,7 @@ let carrito = [];
 const contenedorProductos = document.getElementById("contenedorProductos");
 const mostrarProductos = () => {
  
-  productos.forEach(Producto =>{
+  carrito.forEach(Producto =>{
     const card= document.createElement("div");
     card.classList.add("col-lg-4", "col-md-4", "col-sm-12", "d-flex", "justify-content-center");
     card.innerHTML = `<div>
@@ -89,7 +89,7 @@ const mostrarChanguito = () => {
 
 changuito.innerHTML = "";
 
-    productos.forEach(Producto => {
+    carrito.forEach(Producto => {
     const card = document.createElement("div")
     card.classList.add("col-x1-3", "col-md-6", "col-xs-12");
     card.innerHTML = `
@@ -119,7 +119,7 @@ changuito.innerHTML = "";
 
   //FUNCTION PARA ELIMINAR PRODUCTO
     const eliminarDelChanguito = (id) => {
-    const productos = carrito.find(Producto => Producto.id === id);
+    carrito = carrito.filter(Producto => Producto.id !== id);
     const indice= carrito.indexOf(productos) 
     carrito.splice(indice, 1);
 
