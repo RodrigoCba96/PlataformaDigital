@@ -6,7 +6,7 @@ class Producto {
     this.nombre = nombre;
     this.precio = precio;
     this.img = img;
-    this.cantidad= 0; 
+    this.cantidad= 1; 
   }
 }
 
@@ -23,7 +23,7 @@ const Dbz = new Producto(6, "Dragon Ball Z Kakarot", 1000, "img/dbz.jpg");
 const productos = [Spiderman, Batman, Kratos, Wz, Forhonor, Dbz];
 console.log(productos);
 
-let carrito = [Spiderman, Batman, Kratos, Wz, Forhonor, Dbz];
+let carrito = [];
 
  
 
@@ -31,9 +31,9 @@ let carrito = [Spiderman, Batman, Kratos, Wz, Forhonor, Dbz];
 
 const contenedorProductos = document.getElementById("contenedorProductos");
 const mostrarProductos = () => {
- 
-  carrito.forEach(Producto =>{
-    const card= document.createElement("div");
+
+  productos.forEach(Producto => {
+    const card = document.createElement("div");
     card.classList.add("col-lg-4", "col-md-4", "col-sm-12", "d-flex", "justify-content-center");
     card.innerHTML = `<div>
     <img src = "${Producto.img}" class = "card-img-top imgjuegos" alt= "${Producto.nombre}">
@@ -48,28 +48,27 @@ const mostrarProductos = () => {
     //AGREGADO DE PRODUCTOS A CARRO
 
     const btn = document.getElementById(`btn${Producto.id}`);
-    btn.addEventListener("click", () =>{
+    btn.addEventListener("click", () => {
       agregarAlcarrito(Producto.id)
+
 
     })
     
   })
   }
  
-const agregarAlcarrito = (id) => {
-  const productoEnCarrito = productos.find(Producto => Producto.id === id);
-  if(productoEnCarrito) {
-    productoEnCarrito.cantidad++;
-
-    console.log(productoEnCarrito)
-
+  const agregarAlcarrito = (id) => {
+    const productoEnCarrito = carrito.find(Producto => Producto.id === id);
+    if(productoEnCarrito) {
+      productoEnCarrito.cantidad++;
+      console.log(productoEnCarrito)
+    }
+    else {
+      const producto = productos.find(Producto => Producto.id === id);
+      carrito.push(producto);
+     }
+    console.log(carrito)
   }
-  else {
-    const producto = productos.find(Producto => Producto.id === id);
-    productos.push(producto);
-   }
-  console.log(productos)
-} 
 
 mostrarProductos(productos);
 
@@ -118,13 +117,13 @@ changuito.innerHTML = "";
 }
 
   //FUNCTION PARA ELIMINAR PRODUCTO
-    const eliminarDelChanguito = (id) => {
-    carrito = carrito.filter(Producto => Producto.id !== id);
-    const indice= carrito.indexOf(productos) 
-    carrito.splice(indice, 1);
-
-     mostrarChanguito();
- }
+  const eliminarDelChanguito = (id) => {
+    const producto = carrito.find((producto) => producto.id === id);
+    carrito.splice(carrito.indexOf(producto), 1);
+  
+  
+    mostrarChanguito();
+  }
 
   // EVENTO * - *BUTTON* 
 const btn= document.getElementById("contenedorProductos");
