@@ -66,11 +66,17 @@ const mostrarProductos = () => {
     else {
       const producto = productos.find(Producto => Producto.id === id);
       carrito.push(producto);
+
+     //localstorage working
+
+     localStorage.setItem("carrito", JSON.stringify(carrito));
+
      }
+
      calcularTotalidad();
     }
 
-mostrarProductos(productos);
+mostrarProductos();
 
 //MOSTRAR CARRO DE COMPRAS
 
@@ -122,6 +128,27 @@ calcularTotalidad();
     carrito.splice(carrito.indexOf(producto), 1);
     
     mostrarChanguito();
+
+    //localstorage working
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  }
+
+
+  //VACIAR CARRITO
+  const vaciarCarrito = document.getElementById("vaciarCarrito");
+  vaciarCarrito.addEventListener("click", () => {
+    eliminarCarritoTotal();
+  })
+
+  const eliminarCarritoTotal = () => {
+    carrito = [];
+    mostrarChanguito();
+
+    //localstorage working
+    localStorage.clear();
+
   }
 
 
@@ -139,22 +166,6 @@ const calcularTotalidad= () => {
 
 
 
-  //VACIAR CARRITO
-  const vaciarCarrito = document.getElementById("vaciarCarrito");
-  vaciarCarrito.addEventListener("click", () => {
-    eliminarCarritoTotal();
-  })
-
-  const eliminarCarritoTotal = () => {
-    carrito = [];
-    mostrarChanguito();
-
-  }
-
-
-
-
-
   // EVENTO * - *BUTTON* 
 const btn= document.getElementById("contenedorProductos");
 btn.addEventListener("click", () => {
@@ -164,14 +175,6 @@ console.log("Agregado al carrito")
   })
  
 
-// LocalStorage** BORRADOR**//
-
-localStorage.setItem("Esta es una base de datos", "datos");
-
-// RECUPERO MENSAJE *BORRADOR*//
-
-let base = localStorage.getItem ("base de datos")
-console.log("base de datos");
 
 
 // JSON * productos **  //*CON TIPO DE DATO (TYPEOF)
@@ -193,16 +196,6 @@ console.log(ForhonorJSON, typeof ForhonorJSON)
 
 const DbzJSON= JSON.stringify(Dbz)
 console.log(DbzJSON, typeof DbzJSON)
-
-//almacen en el localstorage
-
-localStorage.setItem ("Spiderman", SpidermanJSON);
-localStorage.setItem ("Batman", BatmanJSON);
-localStorage.setItem("Kratos", KratosJSON);
-localStorage.setItem("Wz", WzJSON);
-localStorage.setItem("Forhonor", ForhonorJSON);
-localStorage.setItem("Dbz", DbzJSON);
-
 
 
 //RECUPERANDO JSON DE LOCALSTORAGE * CONVERTIRLO EN OBJETO CON JSON.PARSE()*
@@ -235,12 +228,17 @@ console.log(juego5, typeof juego5);
 const juego6JSON = localStorage.getItem("Dbz");
 const juego6 = JSON.parse(juego6JSON);
 
-
 console.log(juego6, typeof juego6);
 
 
+//CARGAR CARRO DESDE LOCALSTORAGE
+if(localStorage.getItem("carrito")) {
+  carrito = JSON.parse.apply(localStorage.getItem("carrito"));
+}
 
 
 
 
-//SOLUCIONAR PROBLEMA DE QUE LAS CANTIDADES NO SUBEN
+//SOLUCIONAR ERROR DE QUE RECARGA LA PAGINA Y SE VACIA CARRITO
+
+ 
