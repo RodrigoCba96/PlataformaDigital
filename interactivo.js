@@ -67,8 +67,8 @@ const mostrarProductos = () => {
       const producto = productos.find(Producto => Producto.id === id);
       carrito.push(producto);
      }
-    console.log(carrito)
-  }
+     calcularTotalidad();
+    }
 
 mostrarProductos(productos);
 
@@ -113,17 +113,47 @@ changuito.innerHTML = "";
   })
 
   })
-
+calcularTotalidad();
 }
 
   //FUNCTION PARA ELIMINAR PRODUCTO
   const eliminarDelChanguito = (id) => {
     const producto = carrito.find((producto) => producto.id === id);
     carrito.splice(carrito.indexOf(producto), 1);
-  
-  
+    
     mostrarChanguito();
   }
+
+
+//TOTAL DE LA COMPRA
+const total = document.getElementById("Total");
+const calcularTotalidad= () => {
+  let totalCompra = 0;
+  carrito.forEach(Producto => {
+    totalCompra += Producto.precio * Producto.cantidad;
+
+  })
+  total.innerHTML= `Total: $${totalCompra}`;
+
+}
+
+
+
+  //VACIAR CARRITO
+  const vaciarCarrito = document.getElementById("vaciarCarrito");
+  vaciarCarrito.addEventListener("click", () => {
+    eliminarCarritoTotal();
+  })
+
+  const eliminarCarritoTotal = () => {
+    carrito = [];
+    mostrarChanguito();
+
+  }
+
+
+
+
 
   // EVENTO * - *BUTTON* 
 const btn= document.getElementById("contenedorProductos");
