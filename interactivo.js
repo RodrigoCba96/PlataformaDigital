@@ -43,6 +43,7 @@ const mostrarProductos = () => {
     <p><button class = "boton" id = "btn${Producto.id}">Agregar al carrito</button></p>
     </div>
     </div>`
+    
     contenedorProductos.appendChild(card);
   
     //AGREGADO DE PRODUCTOS A CARRO
@@ -51,11 +52,20 @@ const mostrarProductos = () => {
     btn.addEventListener("click", () => {
       agregarAlcarrito(Producto.id)
 
+         //*SWEET ALERT*
+
+      swal.fire("¡Añadido a carrito!")
+
+
 
     })
     
   })
   }
+ 
+
+  
+  
  
   const agregarAlcarrito = (id) => {
     const productoEnCarrito = carrito.find(Producto => Producto.id === id);
@@ -88,7 +98,7 @@ verChanguito.addEventListener("click", () => {
 
 })
 
-//FUNCION PARA MOSTRAR CARRITO
+//FUNCTION PARA MOSTRAR CARRITO
 
 const mostrarChanguito = () => {
 
@@ -105,22 +115,49 @@ changuito.innerHTML = "";
     <h4>Precio: ${Producto.precio}$</h4>
     <p>Cantidad: ${Producto.cantidad}</p>
     <button class = "boton" id = "Sacar${Producto.id}">Eliminar producto</button>
+    <p><button class = "boton" id = "Adquirir${Producto.id}">COMPRAR</button></p>
+
     </div>
     </div>`
 
   changuito.appendChild(card);
   
 
-  //ELIMINAR PRODUCTOS
+  // ELIMINAR PRODUCTOS
 
     const boton = document.getElementById(`Sacar${Producto.id}`);
     boton.addEventListener("click", () =>{
     eliminarDelChanguito(Producto.id)
-  })
 
+    //SWEET ALERT
+    swal.fire("¡Eliminado del carrito!")
+
+  
+  })  
+   // COMPRAR PRODUCTO
+   const botonAd = document.getElementById(`Adquirir${Producto.id}`);
+   botonAd.addEventListener("click", () =>{
+   ComprarDelChanguito(Producto.id)
+ 
+   //SWEET ALERT
+   swal.fire("¡COMPRADO! ¡ERES GENIAL!");
+ 
+ })
+ 
   })
+ 
 calcularTotalidad();
+
 }
+
+  //FUNCTION PARA COMPRAR PRODUCTO
+  const ComprarDelChanguito = (id) => {
+    const producto = carrito.find((Producto) => Producto.id === id);
+    carrito.splice(carrito.indexOf(producto), 1);
+    
+    mostrarChanguito();
+
+  }
 
   //FUNCTION PARA ELIMINAR PRODUCTO
   const eliminarDelChanguito = (id) => {
@@ -174,8 +211,6 @@ console.log("Agregado al carrito")
 //alert("Agregado al carrito")
   })
  
-
-
 
 // JSON * productos **  //*CON TIPO DE DATO (TYPEOF)
 
@@ -233,12 +268,37 @@ console.log(juego6, typeof juego6);
 
 //CARGAR CARRO DESDE LOCALSTORAGE
 if(localStorage.getItem("carrito")) {
-  carrito = JSON.parse.apply(localStorage.getItem("carrito"));
+  carrito = JSON.parse(localStorage.getItem("carrito"));
 }
 
 
 
+// PROMESA: BUSQUEDA DE UN JUEGO QUE NO ESTA EN STOCK
 
-//SOLUCIONAR ERROR DE QUE RECARGA LA PAGINA Y SE VACIA CARRITO
-
+ class Juego {
+  constructor (game) {
+  this.game = game;
  
+  }
+ }
+
+ const Superman = new Juego("SupermanDC", 0000)
+ const ligaDeLaJusticia = new Juego ("LJ", 0000)
+ 
+ const juegos = [Superman, ligaDeLaJusticia];
+
+ const solicitarjuegos = (estado) => {
+  return new Promise((Disponible, sinStock) => {
+    if (estado == true ) {
+      Disponible(juegos);
+
+    } else {
+      sinStock ("Juego sin stock, revise el catalogo actual")
+    }
+  }
+
+  )
+ }
+
+ console.log(solicitarjuegos(false))
+  
